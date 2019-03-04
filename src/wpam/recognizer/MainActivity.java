@@ -1,5 +1,7 @@
 package wpam.recognizer;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import pl.polidea.apphance.Apphance;
 import android.R.string;
 import android.app.Activity;
@@ -27,14 +29,22 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
+	private static final int REQUEST_MICROPHONE = 100;
+
 	private Button stateButton;
 	private Button clearButton;	
 	private EditText recognizeredEditText;
 	private SpectrumView spectrumView;	
 	private NumericKeyboard numKeyboard;
 	
-	Controller controller; 
-	
+	Controller controller;
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		runtime_permission();
+	}
+
 	private String recognizeredText;
 
 	History history;
@@ -151,6 +161,7 @@ public class MainActivity extends Activity {
 		numKeyboard.setActive(key);
 	}
 	
+	@SuppressLint("ResourceType")
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
@@ -228,5 +239,30 @@ public class MainActivity extends Activity {
 		if (controller.isStarted())
 			controller.changeState();
 		super.onPause();
+	}
+
+	private void runtime_permission() {
+		if (ContextCompat.checkSelfPermission(this,
+				Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+
+			ActivityCompat.requestPermissions(this,
+					new String[]{Manifest.permission.RECORD_AUDIO},
+					REQUEST_MICROPHONE);
+
+		}
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if(requestCode == REQUEST_MICROPHONE) {
+			boolean allGranted = true;
+			for(int grantResult : grantResults) {
+				allGranted &= grantResult == PackageManager.PERMISSION_GRANTED;
+			}
+			if(!allGranted) {
+				runtime_permission();
+			}
+		}
 	}
 }
