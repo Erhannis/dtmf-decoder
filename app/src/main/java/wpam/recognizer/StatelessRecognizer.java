@@ -19,17 +19,21 @@ public class StatelessRecognizer {
 	
 	private void fillTones() {
 		tones.add(new Tone(45, 77, '1'));		
-		tones.add(new Tone(45, 86, '2'));		
-		tones.add(new Tone(45, 95, '3'));		
-		tones.add(new Tone(49, 77, '4'));		
+		tones.add(new Tone(45, 86, '2'));
+		tones.add(new Tone(45, 95, '3'));
+		tones.add(new Tone(45, 105, 'A'));
+		tones.add(new Tone(49, 77, '4'));
 		tones.add(new Tone(49, 86, '5'));		
-		tones.add(new Tone(49, 95, '6'));		
-		tones.add(new Tone(55, 77, '7'));		
+		tones.add(new Tone(49, 95, '6'));
+		tones.add(new Tone(49, 105, 'B'));
+		tones.add(new Tone(55, 77, '7'));
 		tones.add(new Tone(55, 86, '8'));		
-		tones.add(new Tone(55, 95, '9'));		
-		tones.add(new Tone(60, 77, '*'));		
-		tones.add(new Tone(60, 86, '0'));		
-		tones.add(new Tone(60, 95, '#'));		
+		tones.add(new Tone(55, 95, '9'));
+		tones.add(new Tone(55, 105, 'C'));
+		tones.add(new Tone(60, 77, '*'));
+		tones.add(new Tone(60, 86, '0'));
+		tones.add(new Tone(60, 95, '#'));
+		tones.add(new Tone(60, 105, 'D'));
 	}
 
 	public char getRecognizedKey()

@@ -94,7 +94,11 @@ public class MainActivity extends Activity {
 		numKeyboard.add('0', (Button)findViewById(R.id.button0));
 		numKeyboard.add('#', (Button)findViewById(R.id.buttonHash));
 		numKeyboard.add('*', (Button)findViewById(R.id.buttonAsterisk));
-		
+		numKeyboard.add('A', (Button)findViewById(R.id.buttonA));
+		numKeyboard.add('B', (Button)findViewById(R.id.buttonB));
+		numKeyboard.add('C', (Button)findViewById(R.id.buttonC));
+		numKeyboard.add('D', (Button)findViewById(R.id.buttonD));
+
 		setEnabled(false);
 		
 		recognizeredText = "";
